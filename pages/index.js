@@ -7,7 +7,7 @@ export default function Home() {
     <main className="relative min-h-screen">
       <Header />
       <BannerCom />
-      <TestSection />
+      
       {/* Page scroll hone par menu naturally website ke saath scroll karega */}
     </main>
   );
