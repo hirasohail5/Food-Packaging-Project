@@ -1,3 +1,4 @@
+// src/components/home/banner/bannerCom.jsx (ya jo bhi path hai)
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,7 +6,7 @@ const categories = ["Pizza Boxes", "Burger Boxes", "Takeout Boxes", "Bakery Boxe
 
 const BannerCom = () => {
   return (
-    <section className="relative w-full h-[90vh] sm:h-[85vh] lg:h-screen overflow-hidden">
+    <section className="relative w-full h-[90vh] overflow-hidden">
       {/* Background Image: Mobile par focal point top/center align kiya hai taake box center me rahay */}
       <Image
         src="/images/home/banner/bannerDesktop.webp"

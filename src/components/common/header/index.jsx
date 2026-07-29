@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+// src/components/common/header/index.jsx
+import { useState } from "react";
 import Link from "next/link";
 import { Search, User, ShoppingCart, Menu } from "lucide-react";
 import Logo from "./logo";
@@ -7,48 +8,36 @@ import MenuBar from "./menuBar";
 import MobileMenuBar from "./mobileMenuBar";
 
 const Header = () => {
-  const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const desktopMenuRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (desktopMenuRef.current && !desktopMenuRef.current.contains(e.target)) {
-        setDesktopMenuOpen(false);
-      }
-    };
-
-    if (desktopMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [desktopMenuOpen]);
 
   return (
     <>
-      {/* ---------- DESKTOP (lg+) : transparent floating header ---------- */}
-      <header className="hidden lg:block absolute top-0 left-0 w-full z-30">
-        <div className="flex items-center justify-between px-6 pt-4">
-          <div ref={desktopMenuRef} className="relative">
-            <div
-              onClick={() => setDesktopMenuOpen((prev) => !prev)}
-              className="cursor-pointer relative z-50 pl-6"
-            >
-              <Logo />
-            </div>
+      {/* ---------- DESKTOP (lg+) ---------- */}
+      {/* 1. FIXED FLOATING SIDEBAR CONTAINER */}
+      <div className="hidden lg:block fixed top-4 left-6 z-50">
+        <div className="relative z-50 pl-4 pt-1">
+          <Logo />
+        </div>
+        <MenuBar />
+      </div>
 
-            <MenuBar open={desktopMenuOpen} />
+      {/* 2. TOP HEADER BAR */}
+      <header className="hidden lg:block absolute top-0 left-0 w-full z-30 pointer-events-none">
+        <div className="flex items-center justify-between px-6 pt-4 pl-[210px]">
+          {/* Perfectly Balanced Search Bar */}
+          <div className="pointer-events-auto flex-1 flex justify-center mx-auto max-w-xl">
+            <HeaderSearch className="w-full" />
           </div>
 
-          <HeaderSearch className="mx-6" />
-
-          <Link
-            href="/get-custom-quote"
-            className="bg-white/25 backdrop-blur-md border border-white/30 hover:bg-white/35 transition text-white text-sm font-medium px-6 py-3 rounded-full whitespace-nowrap"
-          >
-            Request custom quote
-          </Link>
+          {/* Right Action Button */}
+          <div className="pointer-events-auto shrink-0 pl-4">
+            <Link
+              href="/get-custom-quote"
+              className="bg-white/25 backdrop-blur-md border border-white/30 hover:bg-white/35 transition text-white text-sm font-medium px-6 py-3 rounded-full whitespace-nowrap"
+            >
+              Request custom quote
+            </Link>
+          </div>
         </div>
       </header>
 

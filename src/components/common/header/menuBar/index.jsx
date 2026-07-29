@@ -1,14 +1,11 @@
-// src/components/common/header/menuBar/index.jsx
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronRight, ChevronUp,ChevronDown, User, ShoppingCart } from "lucide-react";
+import { ChevronRight, ChevronDown, User, ShoppingCart } from "lucide-react";
 import { productsMenu, industriesMenu } from "@/data/headerMenu";
 
-const MenuBar = ({ open }) => {
+const MenuBar = () => {
   const [productsOpen, setProductsOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
-
-  if (!open) return null;
 
   const toggleProducts = () => {
     setProductsOpen((prev) => !prev);
@@ -26,7 +23,6 @@ const MenuBar = ({ open }) => {
       <div className="h-10 mb-3 shrink-0" />
 
       {/* Edge-to-edge Full-width White Line */}
-      {/* -mx-4 negates the parent px-4 padding */}
       <div className="-mx-4 border-t border-white/40 mb-2.5 shrink-0" />
 
       <ul
@@ -73,7 +69,7 @@ const MenuBar = ({ open }) => {
               className="w-full flex items-center justify-between hover:opacity-80 transition text-left"
             >
               <span>Industries</span>
-              {industriesOpen ? <ChevronRight size={16} /> : <ChevronDown  size={16} />}
+              {industriesOpen ? <ChevronRight size={16} /> : <ChevronDown size={16} />}
             </button>
 
             {industriesOpen && industriesMenu?.length > 0 && (
@@ -90,7 +86,7 @@ const MenuBar = ({ open }) => {
           </li>
         )}
 
-        {/* About aur Contact sirf Products/Industries band hone par dikhein */}
+        {/* About aur Contact */}
         {!productsOpen && !industriesOpen && (
           <>
             <li>
@@ -106,7 +102,7 @@ const MenuBar = ({ open }) => {
           </>
         )}
 
-        {/* Account aur Cart hamesha dikhein, sirf Products khulne par hide hon */}
+        {/* Account aur Cart */}
         {!productsOpen && (
           <>
             <li>
