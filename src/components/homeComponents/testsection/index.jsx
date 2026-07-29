@@ -25,7 +25,6 @@ const TestSection = () => {
       </div>
 
       <div className="bg-brand-red/10 border border-brand-red/20 p-12 rounded-2xl text-center text-brand-red font-medium">
-        Agar Side Menu scroll karne par upar chala jaye (screen par fix na rahe), toh behavior bilkul accurate hai!
       </div>
 
       {/* Extra spacing for deep scroll test */}
