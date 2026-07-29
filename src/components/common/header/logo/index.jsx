@@ -7,10 +7,10 @@ const Logo = () => {
       <Image
         src="/images/common/header/logo.webp"
         alt="Custom Food Packaging"
-        width={140}
-        height={40}
+        width={200}
+        height={90}
         priority
-        className="w-[110px] h-auto md:w-[130px] lg:w-[140px]"
+        className="w-[110px] h-auto md:w-[130px] lg:w-[135px]"
       />
     </Link>
   );

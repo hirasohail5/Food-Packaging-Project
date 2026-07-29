@@ -5,7 +5,7 @@ const categories = ["Pizza Boxes", "Burger Boxes", "Takeout Boxes", "Bakery Boxe
 
 const BannerCom = () => {
   return (
-    <section className="relative w-full h-[580px] sm:h-[620px] lg:h-[680px] overflow-hidden">
+    <section className="relative w-full h-[90vh] sm:h-[85vh] lg:h-screen overflow-hidden">
       {/* Background Image: Mobile par focal point top/center align kiya hai taake box center me rahay */}
       <Image
         src="/images/home/banner/bannerDesktop.webp"
