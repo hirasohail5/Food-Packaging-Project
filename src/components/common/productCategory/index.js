@@ -23,18 +23,11 @@ const baseCategories = [
     title: "Stickers/Labels",
     image: "/images/home/products/pastryBoxes.webp",
   },
-  {
-    id: "stickers-labels",
-    title: "Stickers/Labels",
-    image: "/images/home/products/pastryBoxes.webp",
-  },
 ];
 
-const GAP = 24; 
-
+const GAP = 24;
 
 const getLine = (width) => (width >= 1024 ? 245 : 80);
-
 
 const getVisibleCount = (width) => {
   if (width >= 1024) return 3;
@@ -45,12 +38,12 @@ const getVisibleCount = (width) => {
 const getShowPeek = (width) => width >= 1024;
 
 const ProductCategoriesSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0); // index into REAL items only, never wraps
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
-  const [line, setLine] = useState(245); // now dynamic, see getLine()
-  const [showPeek, setShowPeek] = useState(true); // laptop/desktop only, see getShowPeek()
-  const [rightPad, setRightPad] = useState(48); // measured live, 48 is just the initial fallback
+  const [line, setLine] = useState(245);
+  const [showPeek, setShowPeek] = useState(true);
+  const [rightPad, setRightPad] = useState(48);
   const containerRef = useRef(null);
   const rightMarkerRef = useRef(null);
 
@@ -72,7 +65,6 @@ const ProductCategoriesSection = () => {
     setShowPeek(getShowPeek(window.innerWidth));
   }, []);
 
-  
   useLayoutEffect(() => {
     recalculate();
     const resizeObserver = new ResizeObserver(() => recalculate());
@@ -88,7 +80,6 @@ const ProductCategoriesSection = () => {
     setCurrentIndex((prev) => Math.min(prev, maxIndex));
   }, [maxIndex]);
 
- 
   const availableRightWidth = Math.max(0, containerWidth - line - rightPad);
   const cardWidth =
     availableRightWidth > 0
@@ -97,7 +88,6 @@ const ProductCategoriesSection = () => {
 
   const handlePrev = () => setCurrentIndex((prev) => Math.max(0, prev - 1));
   const handleNext = () => setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
-
 
   const track = showPeek
     ? [
@@ -109,21 +99,22 @@ const ProductCategoriesSection = () => {
   const translateX = line - trackIndex * (cardWidth + GAP);
 
   return (
-    <section className="relative w-full bg-[#FEF9F4] text-black font-saans py-10 lg:py-20 overflow-hidden">
+    <section className="relative w-full bg-[#FEF9F4] text-black font-saans pt-10 lg:pt-10 pb-10 lg:pb-20 overflow-hidden">
       <div className="w-full px-6 md:px-[80px] lg:pl-[245px] lg:pr-12">
-        <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 lg:gap-6 mb-8 lg:mb-12">
-          <div className="max-w-[515px]">
-            <h2 className="font-medium text-[24px] leading-[29px] md:text-[32px] md:leading-[38px] lg:text-[45px] lg:leading-[53px] text-[#191919]">
+        <div className="w-full flex flex-col md:hidden lg:flex lg:flex-row lg:items-end justify-between gap-4 lg:gap-6 mb-8 lg:mb-12">
+          <div className="max-w-[515px] lg:max-w-[650px]">
+            <h2 className="font-medium text-[24px] leading-[29px] lg:text-[45px] lg:leading-[53px] lg:font-bold text-[#191919] lg:text-black">
               Custom Food Packaging, Made for Every Brand
             </h2>
           </div>
 
-          <div className="flex flex-col md:flex-row md:items-center gap-4 lg:gap-8">
-            <p className="max-w-[343px] font-normal text-[14px] leading-[18px] lg:text-[18px] lg:leading-[22px] text-[#191919]">
-              From boxes to bags, cups to wraps everything you need to pack it right, in style
+          <div className="flex flex-col lg:items-end gap-4 lg:gap-3">
+            <p className="max-w-[343px] lg:max-w-[420px] font-normal text-[14px] leading-[18px] lg:text-[18px] lg:leading-[24px] text-left text-[#191919]">
+              From boxes to bags, cups to wraps <br />
+              everything you need to pack it right, in style
             </p>
 
-            <div className="hidden md:flex items-center gap-3 shrink-0">
+            <div className="hidden lg:flex items-center gap-3 shrink-0">
               <button
                 onClick={handlePrev}
                 disabled={currentIndex === 0}
@@ -141,6 +132,36 @@ const ProductCategoriesSection = () => {
                 <ChevronRight size={18} />
               </button>
             </div>
+          </div>
+        </div>
+
+        <div className="hidden md:flex lg:hidden w-full items-center justify-between gap-6 mb-8">
+          <div className="max-w-[420px]">
+            <h2 className="font-bold text-[32px] leading-[38px] text-black mb-3">
+              Custom Food Packaging, Made for Every Brand
+            </h2>
+            <p className="max-w-[335px] font-normal text-[14px] leading-[18px] text-[#191919]">
+              From boxes to bags, cups to wraps everything you need to pack it right, in style
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              onClick={handlePrev}
+              disabled={currentIndex === 0}
+              className="w-[36px] h-[36px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 disabled:opacity-30 disabled:pointer-events-none"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={currentIndex === maxIndex}
+              className="w-[36px] h-[36px] rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200 disabled:opacity-30 disabled:pointer-events-none"
+              aria-label="Next slide"
+            >
+              <ChevronRight size={18} />
+            </button>
           </div>
         </div>
       </div>
@@ -204,7 +225,5 @@ const ProductCategoriesSection = () => {
     </section>
   );
 };
-
-
 
 export default ProductCategoriesSection;
