@@ -6,22 +6,22 @@ const baseCategories = [
   {
     id: "custom-boxes",
     title: "Custom Boxes",
-    image: "/images/home/products/custom-boxes.webp",
+    image: "/images/home/products/burgerBoxes.webp",
   },
   {
     id: "pouches",
     title: "Pouches",
-    image: "/images/home/products/pouches.webp",
+    image: "/images/home/products/pastryBoxes.webp",
   },
   {
     id: "bags",
     title: "Bags",
-    image: "/images/home/products/bags.webp",
+    image: "/images/home/products/burgerBoxes.webp",
   },
   {
     id: "stickers-labels",
     title: "Stickers/Labels",
-    image: "/images/home/products/stickers.webp",
+    image: "/images/home/products/pastryBoxes.webp",
   },
 ];
 

@@ -1,7 +1,7 @@
 import Header from "@/components/common/header";
 import BannerCom from "@/components/homeComponents/bannerCom";
-import ApproachSection from "@/components/common/approachSection";
-import Prdoductcategory from "@/components/common/productcategory";
+import ApproachSection from "@/components/common/ApproachSection";
+import Prdoductcategory from "@/components/common/productCategory";
 import TestSection from "@/components/homeComponents/testsection";
 
 export default function Home() {
