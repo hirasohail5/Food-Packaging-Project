@@ -161,22 +161,15 @@ const ProductCategoriesSection = () => {
         </div>
       </div>
 
-      {/* Desktop / laptop peek carousel.
-          This box is full-width and NOT padded with lg:pl-[245px] — instead
-          the 245px line position is baked into the translateX/cardWidth
-          math directly (LINE constant), so the peek card is guaranteed to
-          sit to the LEFT of the line, and full cards always start to its
-          RIGHT — neither side can cross or overlay the line. */}
+      
       <div className="hidden lg:block w-full overflow-hidden">
         <div className="relative">
-          {/* the line itself */}
           <div
             className="absolute top-0 bottom-0 w-px bg-[#E0E0E0] z-10"
             style={{ left: `${LINE}px` }}
           />
           <div ref={containerRef} className="w-full overflow-hidden relative">
-            {/* invisible marker, purely to measure the real right padding
-                (same lg:pr-12 used by the heading row) instead of guessing */}
+            
             <div className="absolute inset-0 lg:pr-12 pointer-events-none" aria-hidden="true">
               <div ref={rightMarkerRef} className="absolute right-0 top-0 h-px w-px" />
             </div>
