@@ -1,4 +1,3 @@
-// src/components/common/header/index.jsx
 import { useState } from "react";
 import Link from "next/link";
 import { Search, User, ShoppingCart, Menu } from "lucide-react";
@@ -22,22 +21,36 @@ const Header = () => {
       </div>
 
       {/* 2. TOP HEADER BAR */}
-      <header className="hidden lg:block absolute top-0 left-0 w-full z-30 pointer-events-none">
-        <div className="flex items-center justify-between px-6 pt-4 pl-[210px]">
-          {/* Perfectly Balanced Search Bar */}
-          <div className="pointer-events-auto flex-1 flex justify-center mx-auto max-w-xl">
-            <HeaderSearch className="w-full" />
+      <header className="hidden lg:block fixed top-0 left-0 w-full z-40 pointer-events-none">
+        <div className="flex items-center justify-between px-6 pt-4 w-full">
+          
+          {/* 
+            Boundary Spacer (Left Zone):
+            Yeh exact space guarantee karti hai ke line aur red menu ke zone mein
+            Search bar zoom-in par bhi clash/overlap na kare.
+          */}
+          <div className="w-[230px] shrink-0 hidden lg:block" />
+
+          {/* 
+            Auto-Shrinking Centered Search Bar:
+            - `flex-1`: Standard display par screen centre maintain rakhega.
+            - `min-w-0`: Zoom-in hone par search bar APNA SIZE CHOTA kar lega,
+              line ko intersect nahi karega.
+          */}
+          <div className="pointer-events-auto flex-1 flex justify-center mx-auto max-w-xl min-w-0 px-4">
+            <HeaderSearch className="w-full min-w-0" />
           </div>
 
           {/* Right Action Button */}
-          <div className="pointer-events-auto shrink-0 pl-4">
+          <div className="pointer-events-auto shrink-0">
             <Link
               href="/get-custom-quote"
-              className="bg-white/25 backdrop-blur-md border border-white/30 hover:bg-white/35 transition text-white text-sm font-medium px-6 py-3 rounded-full whitespace-nowrap"
+              className="bg-white/25 backdrop-blur-md border border-white/30 hover:bg-white/35 transition text-white text-sm font-medium px-6 py-3 rounded-full whitespace-nowrap inline-block"
             >
               Request custom quote
             </Link>
           </div>
+
         </div>
       </header>
 

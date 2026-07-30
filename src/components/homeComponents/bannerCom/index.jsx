@@ -1,4 +1,3 @@
-// src/components/home/banner/bannerCom.jsx (ya jo bhi path hai)
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +6,7 @@ const categories = ["Pizza Boxes", "Burger Boxes", "Takeout Boxes", "Bakery Boxe
 const BannerCom = () => {
   return (
     <section className="relative w-full h-[90vh] overflow-hidden">
-      {/* Background Image: Mobile par focal point top/center align kiya hai taake box center me rahay */}
+      {/* Background Image */}
       <Image
         src="/images/home/banner/bannerDesktop.webp"
         alt="Custom food packaging banner"
@@ -16,11 +15,16 @@ const BannerCom = () => {
         className="object-cover object-center sm:object-center"
       />
 
-      {/* Dark gradient taake mobile par text product/background ke upar clearly readable ho */}
+      {/* Dark gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 sm:from-black/60 sm:via-black/20" />
 
       {/* Content Container */}
-      <div className="absolute inset-x-0 bottom-6 sm:bottom-10 flex flex-col justify-end px-5 sm:px-12 lg:px-24 xl:px-72">
+      {/* 
+        FIX HERE: 
+        - Mobile/Tablet (< lg): Normal padding `px-5 sm:px-10`
+        - Desktop (lg+): `lg:pl-[240px]` taake text line ke hamesha RIGHT par rahe
+      */}
+      <div className="absolute inset-x-0 bottom-6 sm:bottom-10 flex flex-col justify-end px-5 sm:px-10 lg:pl-[245px] lg:pr-12">
         <div className="max-w-[520px]">
           <h1 className="text-white font-bold text-2xl sm:text-4xl lg:text-[42px] mb-2 drop-shadow-md">
             Custom boxes
