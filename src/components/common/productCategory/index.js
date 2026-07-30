@@ -6,7 +6,7 @@ const baseCategories = [
   {
     id: "custom-boxes",
     title: "Custom Boxes",
-    image: "/images/home/products/burgerBoxes.webp",
+    image: "/images/home/products/burgeBoxes.webp",
   },
   {
     id: "pouches",
@@ -16,7 +16,7 @@ const baseCategories = [
   {
     id: "bags",
     title: "Bags",
-    image: "/images/home/products/burgerBoxes.webp",
+    image: "/images/home/products/burgeBoxes.webp",
   },
   {
     id: "stickers-labels",
