@@ -1,5 +1,7 @@
 import Header from "@/components/common/header";
 import BannerCom from "@/components/homeComponents/bannerCom";
+import ApproachSection from "@/components/common/approachSection";
+import Prdoductcategory from "@/components/common/productcategory";
 import TestSection from "@/components/homeComponents/testsection";
 
 export default function Home() {
@@ -7,8 +9,9 @@ export default function Home() {
     <main className="relative min-h-screen">
       <Header />
       <BannerCom />
+      <ApproachSection />
+      <Prdoductcategory />
       
-      {/* Page scroll hone par menu naturally website ke saath scroll karega */}
     </main>
   );
 }

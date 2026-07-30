@@ -20,7 +20,6 @@ const MobileMenuBar = ({ open, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 bg-brand-red text-white flex flex-col lg:hidden">
-      {/* top bar */}
       <div className="flex items-center justify-between px-4 py-4">
         <Logo />
         <div className="flex items-center gap-4">
@@ -31,7 +30,6 @@ const MobileMenuBar = ({ open, onClose }) => {
         </div>
       </div>
 
-      {/* search */}
       <div className="px-4">
         <div className="flex items-center gap-2 bg-white/15 rounded-full px-4 py-2.5">
           <Search size={18} />
@@ -43,9 +41,7 @@ const MobileMenuBar = ({ open, onClose }) => {
         </div>
       </div>
 
-      {/* scrollable menu */}
       <div className="flex-1 overflow-y-auto px-4 mt-6">
-        {/* Products accordion */}
         <button
           onClick={() => setProductsOpen((p) => !p)}
           className="w-full flex items-center justify-between text-lg font-medium py-2"
@@ -70,7 +66,6 @@ const MobileMenuBar = ({ open, onClose }) => {
 
         <div className="border-t border-white/20 my-2" />
 
-        {/* Industries accordion */}
         <button
           onClick={() => setIndustriesOpen((p) => !p)}
           className="w-full flex items-center justify-between text-lg font-medium py-2"
@@ -89,7 +84,6 @@ const MobileMenuBar = ({ open, onClose }) => {
         )}
       </div>
 
-      {/* bottom fixed links */}
       <div className="border-t border-white/20 px-4 py-4 flex items-center justify-between text-sm tracking-wide">
         <Link href="/account" className="flex items-center gap-2 font-semibold">
           <User size={16} />

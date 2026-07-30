@@ -19,10 +19,8 @@ const MenuBar = () => {
 
   return (
     <div className="absolute top-0 left-0 bg-brand-red text-white w-[190px] h-[270px] rounded-2xl shadow-xl z-40 px-4 pt-4 pb-4 flex flex-col overflow-hidden">
-      {/* Spacer taake outer logo ke liye jagah banay */}
       <div className="h-10 mb-3 shrink-0" />
 
-      {/* Edge-to-edge Full-width White Line */}
       <div className="-mx-4 border-t border-white/40 mb-2.5 shrink-0" />
 
       <ul
@@ -86,7 +84,6 @@ const MenuBar = () => {
           </li>
         )}
 
-        {/* About aur Contact */}
         {!productsOpen && !industriesOpen && (
           <>
             <li>
@@ -102,7 +99,6 @@ const MenuBar = () => {
           </>
         )}
 
-        {/* Account aur Cart */}
         {!productsOpen && (
           <>
             <li>

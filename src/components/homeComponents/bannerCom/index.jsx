@@ -5,52 +5,48 @@ const categories = ["Pizza Boxes", "Burger Boxes", "Takeout Boxes", "Bakery Boxe
 
 const BannerCom = () => {
   return (
-    <section className="relative w-full h-[90vh] overflow-hidden">
-      {/* Background Image */}
+    <section className="relative w-full h-[85vh] min-h-[550px] max-h-[900px] overflow-hidden font-saans">
       <Image
         src="/images/home/banner/bannerDesktop.webp"
         alt="Custom food packaging banner"
         fill
         priority
-        className="object-cover object-center sm:object-center"
+        className="object-cover object-center"
       />
 
-      {/* Dark gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 sm:from-black/60 sm:via-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-      {/* Content Container */}
-      {/* 
-        FIX HERE: 
-        - Mobile/Tablet (< lg): Normal padding `px-5 sm:px-10`
-        - Desktop (lg+): `lg:pl-[240px]` taake text line ke hamesha RIGHT par rahe
-      */}
-      <div className="absolute inset-x-0 bottom-6 sm:bottom-10 flex flex-col justify-end px-5 sm:px-10 lg:pl-[245px] lg:pr-12">
-        <div className="max-w-[520px]">
-          <h1 className="text-white font-bold text-2xl sm:text-4xl lg:text-[42px] mb-2 drop-shadow-md">
+      
+      <div className="absolute inset-x-0 bottom-8 sm:bottom-12 flex flex-col justify-end px-5 sm:px-10 lg:pl-[245px] lg:pr-12 max-w-[1920px] mx-auto z-10">
+        <div className="max-w-[580px]">
+          <h1 className="text-white font-semibold text-[32px] leading-[38px] sm:text-[45px] sm:leading-[50px] lg:text-[65px] lg:leading-[60px] tracking-[0.66px] lg:tracking-[1.43px] drop-shadow-md">
             Custom boxes
           </h1>
 
-          <p className="text-white/95 text-xs sm:text-[15px] mb-3 sm:mb-4 leading-relaxed drop-shadow">
-            Custom Food Packaging provides tailored solutions for restaurants,
-            bakeries, and food brands.
+          <p className="text-white/95 text-[13px] leading-[16px] lg:text-[16px] lg:leading-[19px] font-normal drop-shadow mt-5 max-w-[540px]">
+            Custom Food Packaging provides tailored solutions for restaurants, bakeries, and food brands.
           </p>
 
-          <ul className="flex flex-wrap gap-x-4 gap-y-1.5 text-white/90 text-xs sm:text-sm mb-5">
-            {categories.map((cat) => (
-              <li key={cat} className="flex items-center gap-1.5">
-                <span className="w-1 h-1 rounded-full bg-white shrink-0" />
-                {cat}
+          <ul className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-white text-[13px] leading-[16px] lg:text-[16px] lg:leading-[19px] font-medium mt-5">
+            {categories.map((cat, index) => (
+              <li key={cat} className="flex items-center gap-3">
+                {index >= 0 && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                )}
+                <span>{cat}</span>
               </li>
             ))}
           </ul>
 
-          <Link
-            href="/collection"
-            className="inline-flex items-center gap-2 bg-brand-red hover:bg-red-700 transition text-white text-xs sm:text-sm font-medium px-5 sm:px-6 py-2.5 sm:py-3 rounded-full"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-            Browse All Products
-          </Link>
+          <div className="mt-5 sm:mt-6">
+            <Link
+              href="/collection"
+              className="inline-flex items-center gap-2.5 bg-[#ED1E29] hover:bg-red-700 transition-colors text-white font-medium text-[13px] lg:text-[14px] h-[40px] lg:h-[45px] px-6 rounded-[25px] shadow-lg"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+              <span>Browse All Products</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
