@@ -70,11 +70,12 @@ const ApproachSection = () => {
           </div>
         </div>
 
-        <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
+        {/* 6 Feature Boxes - Responsive & Zoom-Proof */}
+        <div className="w-full grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 lg:gap-4">
           {features.map((item) => (
             <div
               key={item.id}
-              className="w-full bg-[#F6E7D8] backdrop-blur-[30px] rounded-[28px] lg:rounded-[45px] p-3 lg:p-4 h-[60px] lg:h-[89px] flex items-center gap-3 transition-transform hover:scale-[1.02]"
+              className="w-full bg-[#F6E7D8] backdrop-blur-[30px] rounded-[20px] lg:rounded-[30px] p-3 lg:p-4 min-h-[60px] lg:min-h-[89px] flex items-center gap-3 transition-transform hover:scale-[1.02]"
             >
               <div className="w-[23px] lg:w-[29px] h-[28px] lg:h-[34px] shrink-0 relative flex items-center justify-center">
                 <Image
@@ -86,7 +87,8 @@ const ApproachSection = () => {
                 />
               </div>
 
-              <span className="text-[13px] leading-[15px] lg:text-[16px] lg:leading-[19px] font-normal text-black line-clamp-2">
+              {/* Text completely visible on zoom without cutting */}
+              <span className="text-[13px] leading-[16px] lg:text-[15px] xl:text-[16px] lg:leading-[20px] font-normal text-black break-words">
                 {item.title}
               </span>
             </div>
