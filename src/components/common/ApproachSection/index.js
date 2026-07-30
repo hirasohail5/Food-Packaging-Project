@@ -70,7 +70,6 @@ const ApproachSection = () => {
           </div>
         </div>
 
-        {/* 6 Feature Boxes - Responsive & Zoom-Proof */}
         <div className="w-full grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 lg:gap-4">
           {features.map((item) => (
             <div
@@ -87,7 +86,6 @@ const ApproachSection = () => {
                 />
               </div>
 
-              {/* Text completely visible on zoom without cutting */}
               <span className="text-[13px] leading-[16px] lg:text-[15px] xl:text-[16px] lg:leading-[20px] font-normal text-black break-words">
                 {item.title}
               </span>

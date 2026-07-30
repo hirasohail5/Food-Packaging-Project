@@ -205,4 +205,6 @@ const ProductCategoriesSection = () => {
   );
 };
 
+
+
 export default ProductCategoriesSection;
