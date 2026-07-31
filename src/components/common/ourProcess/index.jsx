@@ -65,7 +65,6 @@ const ProcessSection = () => {
 
         <div className="w-full bg-[#FBF4EA] rounded-t-[24px] lg:rounded-t-[36px] rounded-b-[24px] lg:rounded-b-[36px] pt-12 pb-0 lg:pt-16 flex flex-col justify-between relative overflow-hidden shadow-sm">
 
-          {/* HEADER: stays single column until xl so it never squishes/cuts at laptop widths — tablet/mobile behavior unchanged */}
           <div className="w-full px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 flex flex-col xl:flex-row justify-between items-start gap-8 xl:gap-12">
 
             <div className="flex flex-col max-w-[650px]">
@@ -101,7 +100,6 @@ const ProcessSection = () => {
             </div>
           </div>
 
-          {/* STEPS: no longer forced onto one row at lg — wraps to a second row instead of getting cut off when space runs out */}
           <div className="w-full px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 my-12 lg:my-16">
             <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-5 lg:gap-5">
               {processSteps.map((step, index) => {
