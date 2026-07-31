@@ -107,9 +107,21 @@ const ProcessSection = () => {
                   return (
                     <div
                       key={step.id}
-                      className="relative text-black p-3.5 lg:p-4 flex flex-col justify-center items-start shadow-sm w-full sm:w-[190px] lg:w-[204px] h-[150px] sm:h-[190px] lg:h-[204px] shrink-0 bg-[#42A5F5] rounded-[12px] [clip-path:polygon(0%_0%,78%_0%,100%_50%,78%_100%,0%_100%)]"
+                      className="relative text-black flex flex-col justify-center items-center shadow-sm w-full sm:w-[190px] lg:w-[204px] h-[150px] sm:h-[190px] lg:h-[204px] shrink-0"
                     >
-                      <div className="w-full text-left pl-3 pr-8">
+                      <svg
+                        className="absolute inset-0 w-full h-full text-[#42A5F5]"
+                        viewBox="0 0 200 200"
+                        preserveAspectRatio="none"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M32 0H140C148 0 156 4 161 11L197.5 95C200 99 200 101 197.5 105L161 189C156 196 148 200 140 200H32C14.3269 200 0 185.673 0 168V32C0 14.3269 14.3269 0 32 0Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                      <div className="relative z-10 w-full text-left pl-6 sm:pl-8 pr-12 sm:pr-14">
                         <h3 className="font-bold text-[14px] sm:text-[16.5px] lg:text-[17.5px] mb-1 text-black font-['SF_Pro_Display','SF_Pro',sans-serif]">
                           {step.title}
                         </h3>

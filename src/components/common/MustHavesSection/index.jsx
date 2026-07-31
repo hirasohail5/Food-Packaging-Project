@@ -43,7 +43,6 @@ const MustHavesSection = () => {
     const containerWidth = containerRef.current.getBoundingClientRect().width;
 
     if (width >= 1024) {
-      // Locked with _app.js global line at 230px
       const offset = 230;
       setLeftOffset(offset);
       const availableWidth = containerWidth - offset;
@@ -54,7 +53,6 @@ const MustHavesSection = () => {
       const availableWidth = containerWidth - offset;
       setCardWidth(availableWidth / 2.25);
     } else {
-      // Mobile Mode
       setLeftOffset(0);
       setCardWidth(containerWidth / 1.35);
     }
@@ -83,8 +81,7 @@ const MustHavesSection = () => {
   const handlePrev = () => setCurrentIndex((prev) => Math.max(0, prev - 1));
   const handleNext = () => setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
 
-  // Dynamic translateX formula anchor
-  const translateX = leftOffset - currentIndex * cardWidth;
+  const translateX = -currentIndex * cardWidth;
 
   return (
     <section className="relative w-full bg-[#FEF9F4] text-black font-saans pt-4 lg:pt-6 pb-6 lg:pb-10 overflow-hidden">
@@ -118,28 +115,28 @@ const MustHavesSection = () => {
 
       <div 
         ref={containerRef} 
-        className="w-full border-t border-b border-[#707070] relative"
+        className="w-full border-t border-b border-[#707070] relative flex"
       >
         {leftOffset > 0 ? (
           <div 
-            className="absolute top-0 left-0 bottom-0 bg-[#FEF9F4] z-20 pointer-events-none border-r border-[#707070] lg:border-r-0" 
-            style={{ width: `${leftOffset}px` }} 
+            className="absolute top-0 bottom-0 z-20 pointer-events-none border-r border-[#707070]" 
+            style={{ left: `${leftOffset}px` }} 
           />
         ) : (
           <div className="absolute top-0 left-0 bottom-0 border-l border-[#707070] z-20 pointer-events-none" />
         )}
 
-        <div className="overflow-hidden w-full relative">
+        <div className="w-full relative overflow-x-hidden lg:overflow-visible">
           <div
             className="flex transition-transform duration-500 ease-out"
             style={{
-              transform: `translateX(${translateX}px)`,
+              transform: `translateX(${leftOffset + translateX}px)`,
             }}
           >
-            {mustHaveProducts.map((product, index) => (
+            {mustHaveProducts.map((product) => (
               <div
                 key={product.id}
-                className="shrink-0 flex flex-col justify-between border-r border-[#707070] pt-6 lg:pt-8 pb-4 px-4 lg:px-6 relative group"
+                className="shrink-0 flex flex-col justify-between border-l border-r border-[#707070] pt-6 lg:pt-8 pb-4 px-4 lg:px-6 relative group bg-[#FEF9F4]"
                 style={{ width: cardWidth ? `${cardWidth}px` : "auto" }}
               >
                 <div className="relative w-full h-[240px] sm:h-[280px] lg:h-[340px] flex items-center justify-center">
@@ -160,17 +157,30 @@ const MustHavesSection = () => {
                     From <span className="text-[#ED1E29] font-medium">{product.price}</span>
                   </p>
                 </div>
-
-                {index === currentIndex && (
-                  <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#ED1E29] z-30" />
-                )}
               </div>
             ))}
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] pointer-events-none z-30 flex">
+          <div style={{ width: `${leftOffset}px` }} className="shrink-0" />
+          <div className="flex-1 relative">
+            <div
+              className="absolute top-0 h-full bg-[#ED1E29] transition-all duration-500 ease-out"
+              style={{
+                width: `${100 / total}%`,
+                left: `${(currentIndex / total) * 100}%`,
+              }}
+            />
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+mustHaveProducts.forEach((p) => {
+  p.id = p.id || "";
+});
 
 export default MustHavesSection;
