@@ -83,6 +83,9 @@ const MustHavesSection = () => {
 
   const translateX = -currentIndex * cardWidth;
 
+  // Progress percentage calculate karna (jab index 0 ho toh minimum width ho, aur maxIndex par 100% ho jaye)
+  const progressPercentage = maxIndex === 0 ? 100 : ((currentIndex + 1) / (maxIndex + 1)) * 100;
+
   return (
     <section className="relative w-full bg-[#FEF9F4] text-black font-saans pt-4 lg:pt-6 pb-6 lg:pb-10 overflow-hidden">
       <div className="w-full pb-4 lg:pb-6">
@@ -162,14 +165,14 @@ const MustHavesSection = () => {
           </div>
         </div>
 
+        {/* Progress Bar jo ab slide nahi balki fill hogi */}
         <div className="absolute bottom-0 left-0 right-0 h-[2px] pointer-events-none z-30 flex">
           <div style={{ width: `${leftOffset}px` }} className="shrink-0" />
           <div className="flex-1 relative">
             <div
-              className="absolute top-0 h-full bg-[#ED1E29] transition-all duration-500 ease-out"
+              className="absolute top-0 left-0 h-full bg-[#ED1E29] transition-all duration-500 ease-out"
               style={{
-                width: `${100 / total}%`,
-                left: `${(currentIndex / total) * 100}%`,
+                width: `${progressPercentage}%`,
               }}
             />
           </div>

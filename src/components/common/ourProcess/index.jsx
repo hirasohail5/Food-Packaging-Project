@@ -117,11 +117,11 @@ const ProcessSection = () => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M32 0H140C148 0 156 4 161 11L197.5 95C200 99 200 101 197.5 105L161 189C156 196 148 200 140 200H32C14.3269 200 0 185.673 0 168V32C0 14.3269 14.3269 0 32 0Z"
+                          d="M20 0H140C148 0 156 4 161 11L197.5 95C200 99 200 101 197.5 105L161 189C156 196 148 200 140 200H20C12 200 4 196 0 189L0 11C4 4 12 0 20 0Z"
                           fill="currentColor"
                         />
                       </svg>
-                      <div className="relative z-10 w-full text-left pl-6 sm:pl-8 pr-12 sm:pr-14">
+                      <div className="relative z-10 w-full text-left pl-5 sm:pl-7 pr-12 sm:pr-14">
                         <h3 className="font-bold text-[14px] sm:text-[16.5px] lg:text-[17.5px] mb-1 text-black font-['SF_Pro_Display','SF_Pro',sans-serif]">
                           {step.title}
                         </h3>
