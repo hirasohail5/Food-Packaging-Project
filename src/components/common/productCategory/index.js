@@ -25,7 +25,8 @@ const baseCategories = [
   },
 ];
 
-const GAP = 24;
+// 8px Gap
+const GAP = 8;
 
 const getLine = (width) => (width >= 1024 ? 245 : 80);
 
@@ -96,21 +97,27 @@ const ProductCategoriesSection = () => {
       ]
     : baseCategories;
   const trackIndex = showPeek ? currentIndex + 1 : currentIndex;
-  const translateX = line - trackIndex * (cardWidth + GAP);
+
+  const translateX = showPeek
+    ? line - trackIndex * (cardWidth + GAP) - (GAP / 2 + 6)
+    : line - trackIndex * (cardWidth + GAP);
 
   return (
     <section className="relative w-full bg-[#FEF9F4] text-black font-saans pt-10 lg:pt-10 pb-10 lg:pb-20 overflow-hidden">
       <div className="w-full px-6 md:px-[80px] lg:pl-[245px] lg:pr-12">
+        {/* Laptop / Mobile Header */}
         <div className="w-full flex flex-col md:hidden lg:flex lg:flex-row lg:items-end justify-between gap-4 lg:gap-6 mb-8 lg:mb-12">
           <div className="max-w-[515px] lg:max-w-[650px]">
-            <h2 className="font-medium text-[24px] leading-[29px] lg:text-[45px] lg:leading-[53px] lg:font-bold text-[#191919] lg:text-black">
+            <h2 className="font-bold text-[24px] leading-[29px] lg:text-[45px] lg:leading-[53px] lg:font-bold text-[#191919] lg:text-black">
               Custom Food Packaging, Made for Every Brand
             </h2>
           </div>
 
           <div className="flex flex-col lg:items-end gap-4 lg:gap-3">
-            <p className="max-w-[343px] lg:max-w-[420px] font-normal text-[14px] leading-[18px] lg:text-[18px] lg:leading-[24px] text-left text-[#191919]">
-              From boxes to bags, cups to wraps <br />
+            {/* Mobile friendly responsive line break */}
+            <p className="max-w-[300px] sm:max-w-[343px] lg:max-w-[420px] font-normal text-[14px] leading-[18px] lg:text-[18px] lg:leading-[24px] text-left text-[#191919]">
+              From boxes to bags, cups to wraps{" "}
+              <br className="hidden lg:inline" />
               everything you need to pack it right, in style
             </p>
 
@@ -135,6 +142,7 @@ const ProductCategoriesSection = () => {
           </div>
         </div>
 
+        {/* Tablet Header */}
         <div className="hidden md:flex lg:hidden w-full items-center justify-between gap-6 mb-8">
           <div className="max-w-[420px]">
             <h2 className="font-bold text-[32px] leading-[38px] text-black mb-3">
@@ -166,8 +174,9 @@ const ProductCategoriesSection = () => {
         </div>
       </div>
 
+      {/* Mobile Grid */}
       <div className="block md:hidden px-6">
-        <div className="grid grid-cols-2 gap-x-4 gap-y-6">
+        <div className="grid grid-cols-2 gap-x-2 gap-y-4">
           {baseCategories.map((cat) => (
             <div key={cat.id} className="flex flex-col gap-2">
               <div className="relative w-full aspect-square rounded-[15px] overflow-hidden bg-[#EAEAEA]">
@@ -181,6 +190,7 @@ const ProductCategoriesSection = () => {
         </div>
       </div>
 
+      {/* Carousel Track */}
       <div className="hidden md:block w-full overflow-hidden">
         <div className="relative">
           <div ref={containerRef} className="w-full overflow-hidden relative">
@@ -189,7 +199,7 @@ const ProductCategoriesSection = () => {
             </div>
 
             <div
-              className="flex gap-6 transition-transform duration-500 ease-out"
+              className="flex gap-2 transition-transform duration-500 ease-out"
               style={{ transform: `translateX(${translateX}px)` }}
             >
               {track.map((cat, index) => (
@@ -209,6 +219,7 @@ const ProductCategoriesSection = () => {
         </div>
       </div>
 
+      {/* Progress Bar */}
       <div className="hidden md:block w-full md:px-[80px] lg:pl-[245px] lg:pr-12 mt-12">
         <div className="w-full h-[2px] bg-[#E0E0E0] relative">
           <div
