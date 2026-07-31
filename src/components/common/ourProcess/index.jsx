@@ -7,7 +7,7 @@ const processSteps = [
     title: "Order",
     desc: "You can place the custom order directly through our website.",
     bgColor: "bg-[#4CAF50]",
-    shapeClass: "rounded-full w-[150px] sm:w-[190px] lg:w-[204px] h-[150px] sm:h-[190px] lg:h-[204px]",
+    shapeClass: "rounded-full w-[150px] sm:w-[190px] lg:w-[205px] h-[150px] sm:h-[190px] lg:h-[205px]",
     textAlign: "text-center",
     paddingClass: "px-2 sm:px-4",
   },
@@ -16,7 +16,7 @@ const processSteps = [
     title: "Design",
     desc: "Please choose from our portfolio of custom designs or provide a certain layout, pattern, logo, or artwork.",
     bgColor: "bg-[#FFA726]",
-    shapeClass: "rounded-[24px] sm:rounded-[32px] w-[150px] sm:w-[190px] lg:w-[204px] h-[150px] sm:h-[190px] lg:h-[204px]",
+    shapeClass: "rounded-[24px] sm:rounded-[32px] w-[150px] sm:w-[190px] lg:w-[222px] h-[150px] sm:h-[190px] lg:h-[205px]",
     textAlign: "text-left",
     paddingClass: "pl-3 sm:pl-5 pr-3 sm:pr-4",
   },
@@ -32,7 +32,7 @@ const processSteps = [
     title: "Production",
     desc: "Our team will develop the custom boxes tailor-made to your exclusive designs",
     bgColor: "bg-[#688A9E]",
-    shapeClass: "rounded-[24px] sm:rounded-[32px] w-[150px] sm:w-[190px] lg:w-[204px] h-[150px] sm:h-[190px] lg:h-[204px]",
+    shapeClass: "rounded-[24px] sm:rounded-[32px] w-[150px] sm:w-[190px] lg:w-[222px] h-[150px] sm:h-[190px] lg:h-[205px]",
     textAlign: "text-left",
     paddingClass: "pl-3 sm:pl-5 pr-3 sm:pr-4",
   },
@@ -41,7 +41,7 @@ const processSteps = [
     title: "Delivery",
     desc: "You will get the order delivered within two weeks after your confirmation",
     bgColor: "bg-[#E5483D]",
-    shapeClass: "rounded-full w-[150px] sm:w-[190px] lg:w-[204px] h-[150px] sm:h-[190px] lg:h-[204px]",
+    shapeClass: "rounded-full w-[150px] sm:w-[190px] lg:w-[205px] h-[150px] sm:h-[190px] lg:h-[205px]",
     textAlign: "text-center",
     paddingClass: "px-2 sm:px-4",
   },
@@ -62,26 +62,29 @@ const ProcessSection = () => {
   return (
     <section className="relative w-full bg-[#FEF9F4] text-black font-['Saans-TRIAL',sans-serif] py-6 lg:py-8 overflow-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-8 relative">
-        
+
         <div className="w-full bg-[#FBF4EA] rounded-t-[24px] lg:rounded-t-[36px] rounded-b-[24px] lg:rounded-b-[36px] pt-12 pb-0 lg:pt-16 flex flex-col justify-between relative overflow-hidden shadow-sm">
-          
-          <div className="w-full px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-12">
-            
+
+          {/* HEADER: stays single column until xl so it never squishes/cuts at laptop widths — tablet/mobile behavior unchanged */}
+          <div className="w-full px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 flex flex-col xl:flex-row justify-between items-start gap-8 xl:gap-12">
+
             <div className="flex flex-col max-w-[650px]">
               <span className="text-[14px] sm:text-[16px] text-black font-medium mb-3 font-['Saans-TRIAL',sans-serif]">
                 Our Process
               </span>
-              <h2 className="text-[28px] sm:text-[40px] lg:text-[48px] font-bold leading-[1.15] sm:leading-[1.08] text-black font-['SF_Pro_Display','SF_Pro',sans-serif] tracking-tight">
-                From concept to delivery,{" "}
-                <span className="hidden lg:inline-block relative text-[25px] align-super font-normal border border-black rounded-full px-1.5 leading-none mx-0 -top-3">
-                  ®
+              <h2 className="text-[28px] sm:text-[40px] xl:text-[48px] font-bold leading-[1.15] sm:leading-[1.08] text-black font-['SF_Pro_Display','SF_Pro',sans-serif] tracking-tight">
+                <span className="xl:whitespace-nowrap">
+                  From concept to delivery,
+                  <sup className="hidden xl:inline-flex xl:ml-2 items-center justify-center w-[24px] h-[24px] text-[13px] align-top font-normal border border-black rounded-full -translate-y-1">
+                    ®
+                  </sup>
                 </span>
                 <br className="hidden sm:inline" />
                 we make packaging easy
               </h2>
             </div>
 
-            <div className="flex flex-col items-start gap-5 max-w-[450px] shrink-0 lg:ml-auto lg:pt-[32px]">
+            <div className="flex flex-col items-start gap-5 max-w-[450px] shrink-0 xl:ml-auto xl:pt-[32px]">
               <p className="text-[14.5px] sm:text-[15.5px] lg:text-[16px] text-black leading-relaxed font-['Saans-TRIAL',sans-serif]">
                 We follow a simple, transparent process that takes your idea from
                 concept to finished packaging ensuring quality, consistency, and
@@ -98,8 +101,9 @@ const ProcessSection = () => {
             </div>
           </div>
 
+          {/* STEPS: no longer forced onto one row at lg — wraps to a second row instead of getting cut off when space runs out */}
           <div className="w-full px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 my-12 lg:my-16">
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap lg:flex-nowrap items-center justify-center sm:justify-start lg:justify-start gap-4 sm:gap-5 lg:gap-5">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-5 lg:gap-5">
               {processSteps.map((step, index) => {
                 const isLastItem = index === processSteps.length - 1;
 
@@ -107,7 +111,7 @@ const ProcessSection = () => {
                   return (
                     <div
                       key={step.id}
-                      className="relative text-black flex flex-col justify-center items-center shadow-sm w-full sm:w-[190px] lg:w-[204px] h-[150px] sm:h-[190px] lg:h-[204px] shrink-0"
+                      className="relative text-black flex flex-col justify-center items-center shadow-sm w-full sm:w-[190px] lg:w-[233px] h-[150px] sm:h-[190px] lg:h-[205px] shrink-0"
                     >
                       <svg
                         className="absolute inset-0 w-full h-full text-[#42A5F5]"
@@ -117,7 +121,7 @@ const ProcessSection = () => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M20 0H140C148 0 156 4 161 11L197.5 95C200 99 200 101 197.5 105L161 189C156 196 148 200 140 200H20C12 200 4 196 0 189L0 11C4 4 12 0 20 0Z"
+                          d="M24 0H140C148 0 156 4 161 11L197.5 95C200 99 200 101 197.5 105L161 189C156 196 148 200 140 200H24C10.7452 200 0 189.255 0 176V24C0 10.7452 10.7452 0 24 0Z"
                           fill="currentColor"
                         />
                       </svg>
@@ -160,7 +164,7 @@ const ProcessSection = () => {
             className="w-full bg-[#FEF9F4] px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 py-10 lg:py-10 border-l border-r border-b rounded-b-[24px] lg:rounded-b-[36px] flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-0 relative overflow-hidden"
             style={{ borderColor: "#D1D5DB", borderTopColor: "#FBF4EA" }}
           >
-            
+
             <div className="shrink-0 w-full lg:w-[180px] lg:pr-4 z-10 text-center lg:text-left">
               <p className="text-[14px] sm:text-[14px] font-bold text-black leading-tight font-['SF_Pro_Display','SF_Pro',sans-serif]">
                 Collabs We're Proud to Carry
