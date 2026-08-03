@@ -95,7 +95,8 @@ const TrustedSection = () => {
           
           <div className="flex items-center justify-between md:block w-full md:w-auto">
             <div className="flex flex-col gap-3">
-              <h2 className="font-bold text-[24px] sm:text-[28px] min-[900px]:max-[1150px]:text-[24px] xl:text-[36px] leading-tight text-[#191919]">
+              
+              <h2 className="font-bold text-[24px] sm:text-[28px] lg:text-[26px] lg:whitespace-nowrap xl:text-[36px] leading-tight text-[#191919]">
                 Tried, Tested & Trusted
               </h2>
               <div className="flex items-center gap-6 text-[14px]">
@@ -128,7 +129,27 @@ const TrustedSection = () => {
             </div>
           </div>
 
-          <div className="hidden md:flex flex-col gap-4 min-[900px]:max-[1150px]:max-w-[200px] xl:max-w-[420px]">
+          <div className="hidden md:flex lg:hidden items-center gap-2 self-end">
+            <button
+              onClick={handlePrev}
+              disabled={currentIndex === 0}
+              aria-label="Previous product"
+              className="w-9 h-9 rounded-full border border-[#191919] flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-colors duration-200 disabled:opacity-25 disabled:pointer-events-none"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={currentIndex >= maxIndex}
+              aria-label="Next product"
+              className="w-9 h-9 rounded-full border border-[#191919] flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-colors duration-200 disabled:opacity-25 disabled:pointer-events-none"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+
+          
+          <div className="hidden lg:flex flex-col gap-4 lg:max-w-[260px] xl:max-w-[420px] shrink-0">
             <p className="text-[14px] text-[#666666] leading-relaxed">
               Explore the designs that businesses keep coming back for. These products lead the way in quality, demand, and customer satisfaction a true reflection of what works best in the market.
             </p>
