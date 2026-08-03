@@ -7,7 +7,7 @@ const processSteps = [
     title: "Order",
     desc: "You can place the custom order directly through our website.",
     bgColor: "bg-[#4CAF50]",
-    shapeClass: "rounded-full w-[150px] sm:w-[190px] lg:w-[205px] h-[150px] sm:h-[190px] lg:h-[205px]",
+    shapeClass: "rounded-full w-[150px] sm:w-[160px] lg:w-[170px] h-[150px] sm:h-[160px] lg:h-[170px]",
     textAlign: "text-center",
     paddingClass: "px-2 sm:px-4",
   },
@@ -16,7 +16,7 @@ const processSteps = [
     title: "Design",
     desc: "Please choose from our portfolio of custom designs or provide a certain layout, pattern, logo, or artwork.",
     bgColor: "bg-[#FFA726]",
-    shapeClass: "rounded-[24px] sm:rounded-[32px] w-[150px] sm:w-[190px] lg:w-[222px] h-[150px] sm:h-[190px] lg:h-[205px]",
+    shapeClass: "rounded-[24px] sm:rounded-[32px] w-[150px] sm:w-[190px] lg:w-[204px] h-[150px] sm:h-[150px] lg:h-[160px]",
     textAlign: "text-left",
     paddingClass: "pl-3 sm:pl-5 pr-3 sm:pr-4",
   },
@@ -32,7 +32,7 @@ const processSteps = [
     title: "Production",
     desc: "Our team will develop the custom boxes tailor-made to your exclusive designs",
     bgColor: "bg-[#688A9E]",
-    shapeClass: "rounded-[24px] sm:rounded-[32px] w-[150px] sm:w-[190px] lg:w-[222px] h-[150px] sm:h-[190px] lg:h-[205px]",
+    shapeClass: "rounded-[24px] sm:rounded-[32px] w-[150px] sm:w-[190px] lg:w-[204px] h-[150px] sm:h-[150px] lg:h-[160px]",
     textAlign: "text-left",
     paddingClass: "pl-3 sm:pl-5 pr-3 sm:pr-4",
   },
@@ -41,7 +41,7 @@ const processSteps = [
     title: "Delivery",
     desc: "You will get the order delivered within two weeks after your confirmation",
     bgColor: "bg-[#E5483D]",
-    shapeClass: "rounded-full w-[150px] sm:w-[190px] lg:w-[205px] h-[150px] sm:h-[190px] lg:h-[205px]",
+    shapeClass: "rounded-full w-[150px] sm:w-[160px] lg:w-[170px] h-[150px] sm:h-[160px] lg:h-[170px]",
     textAlign: "text-center",
     paddingClass: "px-2 sm:px-4",
   },
@@ -71,14 +71,15 @@ const ProcessSection = () => {
               <span className="text-[14px] sm:text-[16px] text-black font-medium mb-3 font-['Saans-TRIAL',sans-serif]">
                 Our Process
               </span>
-              <h2 className="text-[28px] sm:text-[40px] xl:text-[48px] font-bold leading-[1.15] sm:leading-[1.08] text-black font-['SF_Pro_Display','SF_Pro',sans-serif] tracking-tight">
+              <h2 className="text-[30px] sm:text-[40px] xl:text-[48px] font-bold leading-[1.15] sm:leading-[1.08] text-black font-['SF_Pro_Display','SF_Pro',sans-serif] tracking-tight">
                 <span className="xl:whitespace-nowrap">
                   From concept to delivery,
                   <sup className="hidden xl:inline-flex xl:ml-2 items-center justify-center w-[24px] h-[24px] text-[13px] align-top font-normal border border-black rounded-full -translate-y-1">
                     ®
                   </sup>
                 </span>
-                <br className="hidden sm:inline" />
+                <br className="inline lg:hidden" />
+                <span className="hidden lg:inline"> </span>
                 we make packaging easy
               </h2>
             </div>
@@ -101,7 +102,7 @@ const ProcessSection = () => {
           </div>
 
           <div className="w-full px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 my-12 lg:my-16">
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-5 lg:gap-5">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-5 lg:gap-5 max-w-[720px] lg:max-w-none">
               {processSteps.map((step, index) => {
                 const isLastItem = index === processSteps.length - 1;
 
@@ -109,7 +110,7 @@ const ProcessSection = () => {
                   return (
                     <div
                       key={step.id}
-                      className="relative text-black flex flex-col justify-center items-center shadow-sm w-full sm:w-[190px] lg:w-[233px] h-[150px] sm:h-[190px] lg:h-[205px] shrink-0"
+                      className="relative text-black flex flex-col justify-center items-center shadow-sm w-full sm:w-[190px] lg:w-[204px] h-[150px] sm:h-[150px] lg:h-[160px] shrink-0"
                     >
                       <svg
                         className="absolute inset-0 w-full h-full text-[#42A5F5]"
@@ -148,7 +149,7 @@ const ProcessSection = () => {
                       </h3>
                     </div>
                     <div className={`w-full ${step.textAlign || "text-center"} ${step.paddingClass || ""}`}>
-                      <p className={`text-[10px] sm:text-[11px] lg:text-[11.8px] leading-tight text-black font-medium opacity-95 font-['Saans-TRIAL',sans-serif] ${step.textAlign === "text-center" ? "max-w-[130px] sm:max-w-[140px] mx-auto" : ""}`}>
+                      <p className={`text-[10px] sm:text-[11px] lg:text-[11.8px] leading-tight text-black font-medium opacity-95 font-['Saans-TRIAL',sans-serif] ${step.textAlign === "text-center" ? "max-w-[130px] sm:max-w-[130px] mx-auto" : ""}`}>
                         {step.desc}
                       </p>
                     </div>
@@ -162,7 +163,6 @@ const ProcessSection = () => {
             className="w-full bg-[#FEF9F4] px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 py-10 lg:py-10 border-l border-r border-b rounded-b-[24px] lg:rounded-b-[36px] flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-0 relative overflow-hidden"
             style={{ borderColor: "#D1D5DB", borderTopColor: "#FBF4EA" }}
           >
-
             <div className="shrink-0 w-full lg:w-[180px] lg:pr-4 z-10 text-center lg:text-left">
               <p className="text-[14px] sm:text-[14px] font-bold text-black leading-tight font-['SF_Pro_Display','SF_Pro',sans-serif]">
                 Collabs We're Proud to Carry
@@ -186,7 +186,6 @@ const ProcessSection = () => {
                 ))}
               </div>
             </div>
-
           </div>
 
         </div>

@@ -4,6 +4,10 @@ import ApproachSection from "@/components/common/ApproachSection";
 import Prdoductcategory from "@/components/common/productCategory";
 import MustHavesSection from "@/components/common/MustHavesSection";
 import OurProcess from "@/components/common/ourProcess";
+import TrustedSection from "@/components/common/trustedSection";
+import TestimonialsSection from "@/components/common/testimonialsSection";
+import FAQSection from "@/components/common/FAQSection";
+
 import TestSection from "@/components/homeComponents/testsection";
 
 export default function Home() {
@@ -15,6 +19,10 @@ export default function Home() {
       <Prdoductcategory />
       <MustHavesSection />
       <OurProcess />
+      {/* <TrustedSection /> 
+      <TestimonialsSection />
+      <FAQSection />
+      <TestSection /> */}
     </main>
   );
 }
