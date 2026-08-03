@@ -33,7 +33,7 @@ const Header = () => {
           <div className="pointer-events-auto shrink-0">
             <Link
               href="/get-custom-quote"
-              className="bg-white/25 backdrop-blur-md border border-white/30 hover:bg-white/35 transition text-white text-sm font-medium px-6 py-3 rounded-full whitespace-nowrap inline-block"
+              className="bg-white/40 backdrop-blur-md border border-white/40 hover:bg-white/55 transition text-black text-sm font-medium px-6 py-3 rounded-full whitespace-nowrap inline-block"
             >
               Request custom quote
             </Link>

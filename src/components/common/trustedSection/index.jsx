@@ -90,11 +90,9 @@ const TrustedSection = () => {
 
   return (
     <section className="relative w-full bg-[#FEF9F4] text-black font-saans pt-6 lg:pt-10 pb-6 lg:pb-10 overflow-hidden">
-      {/* Top Header Section */}
       <div className="w-full pb-6 lg:pb-8">
         <div className="w-full px-4 sm:px-6 md:pl-[64px] lg:pl-[250px] md:pr-16 lg:pr-24 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
           
-          {/* Left Title and Sub-filters & Mobile/Tablet Navigation row */}
           <div className="flex items-center justify-between lg:block w-full lg:w-auto">
             <div className="flex flex-col gap-3">
               <h2 className="font-bold text-[24px] sm:text-[28px] lg:text-[36px] leading-tight text-[#191919]">
@@ -110,7 +108,6 @@ const TrustedSection = () => {
               </div>
             </div>
 
-            {/* Tablet & Mobile Mode: Navigation buttons aligned to right, centered with left content */}
             <div className="flex lg:hidden items-center gap-2 shrink-0">
               <button
                 onClick={handlePrev}
@@ -131,7 +128,6 @@ const TrustedSection = () => {
             </div>
           </div>
 
-          {/* Laptop Mode Only: Description block, View All, and Navigation */}
           <div className="hidden lg:flex flex-col gap-4 max-w-[420px]">
             <p className="text-[14px] text-[#666666] leading-relaxed">
               Explore the designs that businesses keep coming back for. These products lead the way in quality, demand, and customer satisfaction a true reflection of what works best in the market.
@@ -166,7 +162,6 @@ const TrustedSection = () => {
         </div>
       </div>
 
-      {/* Cards Slider Section */}
       <div 
         ref={containerRef} 
         className="w-full border-t border-b border-[#707070] relative flex"
@@ -193,7 +188,6 @@ const TrustedSection = () => {
                 className="shrink-0 flex flex-col justify-between border-l border-r border-[#707070] pt-6 lg:pt-8 pb-4 px-4 lg:px-6 relative group bg-[#FEF9F4]"
                 style={{ width: cardWidth ? `${cardWidth}px` : "auto" }}
               >
-                {/* Product Image */}
                 <div className="relative w-full h-[240px] sm:h-[280px] lg:h-[340px] flex items-center justify-center">
                   <Image
                     src={product.image}
@@ -204,9 +198,7 @@ const TrustedSection = () => {
                   />
                 </div>
 
-                {/* Bottom Details */}
                 <div className="mt-4 flex flex-col gap-2">
-                  {/* Tags */}
                   {product.tags.length > 0 && (
                     <div className="flex items-center gap-2">
                       {product.tags.map((tag, idx) => (
@@ -227,7 +219,6 @@ const TrustedSection = () => {
                       </p>
                     </div>
 
-                    {/* Bookmark / Icon placeholder */}
                     <button aria-label="Bookmark" className="text-[#666666] hover:text-black">
                       <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 2V18L8 14L15 18V2C15 1.44772 14.5523 1 14 1H2C1.44772 1 1 1.44772 1 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -241,7 +232,6 @@ const TrustedSection = () => {
           </div>
         </div>
 
-        {/* Bottom Red Fill Progress Bar */}
         <div className="absolute bottom-0 left-0 right-0 h-[2px] pointer-events-none z-30 flex">
           <div style={{ width: `${leftOffset}px` }} className="shrink-0" />
           <div className="flex-1 relative">

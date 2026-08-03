@@ -67,11 +67,11 @@ const ProcessSection = () => {
 
           <div className="w-full px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 flex flex-col xl:flex-row justify-between items-start gap-8 xl:gap-12">
 
-            <div className="flex flex-col max-w-[650px]">
+            <div className="flex flex-col max-w-[650px] w-full">
               <span className="text-[14px] sm:text-[16px] text-black font-medium mb-3 font-['Saans-TRIAL',sans-serif]">
                 Our Process
               </span>
-              <h2 className="text-[30px] sm:text-[40px] xl:text-[48px] font-bold leading-[1.15] sm:leading-[1.08] text-black font-['SF_Pro_Display','SF_Pro',sans-serif] tracking-tight">
+              <h2 className="text-[25px] sm:text-[38px] xl:text-[52px] font-bold leading-[1.2] sm:leading-[1.08] text-black font-['SF_Pro_Display','SF_Pro',sans-serif] tracking-tight">
                 <span className="xl:whitespace-nowrap">
                   From concept to delivery,
                   <sup className="hidden xl:inline-flex xl:ml-2 items-center justify-center w-[24px] h-[24px] text-[13px] align-top font-normal border border-black rounded-full -translate-y-1">
@@ -82,23 +82,24 @@ const ProcessSection = () => {
                 <span className="hidden lg:inline"> </span>
                 we make packaging easy
               </h2>
+
+              <div className="flex flex-col items-start gap-5 max-w-[450px] mt-8">
+                <p className="text-[14.5px] sm:text-[15.5px] lg:text-[16px] text-black leading-relaxed font-['Saans-TRIAL',sans-serif]">
+                  We follow a simple, transparent process that takes your idea from
+                  concept to finished packaging ensuring quality, consistency, and
+                  speed at every stage
+                </p>
+
+                <button className="group inline-flex items-center gap-2.5 bg-[#ED1E29] text-white text-[14px] sm:text-[15px] font-medium px-5 py-2.5 rounded-full transition-colors duration-200 font-['Saans-TRIAL',sans-serif]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white transition-all duration-200 group-hover:hidden" />
+                  <span>Shop now</span>
+                  <span className="hidden group-hover:inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                    ↗
+                  </span>
+                </button>
+              </div>
             </div>
 
-            <div className="flex flex-col items-start gap-5 max-w-[450px] shrink-0 xl:ml-auto xl:pt-[32px]">
-              <p className="text-[14.5px] sm:text-[15.5px] lg:text-[16px] text-black leading-relaxed font-['Saans-TRIAL',sans-serif]">
-                We follow a simple, transparent process that takes your idea from
-                concept to finished packaging ensuring quality, consistency, and
-                speed at every stage
-              </p>
-
-              <button className="group inline-flex items-center gap-2.5 bg-[#ED1E29] text-white text-[14px] sm:text-[15px] font-medium px-5 py-2.5 rounded-full transition-colors duration-200 font-['Saans-TRIAL',sans-serif]">
-                <span className="w-1.5 h-1.5 rounded-full bg-white transition-all duration-200 group-hover:hidden" />
-                <span>Shop now</span>
-                <span className="hidden group-hover:inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  ↗
-                </span>
-              </button>
-            </div>
           </div>
 
           <div className="w-full px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 my-12 lg:my-16">
@@ -163,7 +164,6 @@ const ProcessSection = () => {
             className="w-full bg-[#FEF9F4] px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 py-10 lg:py-10 border-l border-r border-b rounded-b-[24px] lg:rounded-b-[36px] flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-0 relative overflow-hidden"
             style={{ borderColor: "#D1D5DB", borderTopColor: "#FBF4EA" }}
           >
-            {/* Clamp function use kiya hai taake zoom karne par space automatically kam ho jaye */}
             <div className="shrink-0 w-full lg:w-[150px] lg:mr-[clamp(80px,15vw,350px)] z-10 text-center lg:text-left">
               <p className="text-[18px] sm:text-[18px] font-bold text-black leading-tight font-['SF_Pro_Display','SF_Pro',sans-serif]">
                 Collabs We're<span className="hidden lg:inline"><br /></span><span className="inline lg:hidden"> </span>Proud to Carry
