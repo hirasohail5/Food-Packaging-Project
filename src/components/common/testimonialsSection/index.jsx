@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const testimonials = [
   {
@@ -49,9 +49,18 @@ const testimonials = [
     role: "Spice Co.",
     initials: "ER",
   },
+  {
+    id: 7,
+    rating: 5,
+    text: '"Exceptional customer support guiding us through the template setup. Truly a seamless experience from proofing to delivery."',
+    author: "Elena Rostova.",
+    role: "Spice Co.",
+    initials: "EN",
+  },
 ];
 
 const SLIDE_MS = 700; 
+const REWIND_MS = 950; 
 const HOLD_MS = 5500; 
 
 
@@ -78,9 +87,20 @@ const Sparkle = ({ className = "" }) => (
 
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [isSliding, setIsSliding] = useState(false);
 
   
+  const [isRewinding, setIsRewinding] = useState(false);
+  const [rewindAnimate, setRewindAnimate] = useState(false);
+
+  const [visibleCount, setVisibleCount] = useState(3);
+
+ 
+  const currentIndexRef = useRef(0);
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
+
   useEffect(() => {
     const lgQuery = window.matchMedia("(min-width: 1024px)");
     const mdQuery = window.matchMedia("(min-width: 768px)");
@@ -95,31 +115,148 @@ const TestimonialsSection = () => {
     };
   }, []);
 
- 
-  const maxIndex = Math.max(0, testimonials.length - Math.ceil(visibleCount));
 
-  
-  useEffect(() => {
-    setCurrentIndex((prev) => Math.min(prev, maxIndex));
-  }, [maxIndex]);
+  const maxStartIndex = Math.max(
+    0,
+    testimonials.length - Math.ceil(visibleCount)
+  );
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+      const isWrap = currentIndexRef.current >= maxStartIndex;
+
+      if (isWrap) {
+
+        setRewindAnimate(false);
+        setIsRewinding(true);
+      } else {
+        setIsSliding(true);
+        setTimeout(() => {
+          setCurrentIndex((prev) => prev + 1);
+          setIsSliding(false);
+        }, SLIDE_MS);
+      }
     }, HOLD_MS);
     return () => clearInterval(timer);
-  }, [maxIndex]);
+  }, [maxStartIndex]);
 
-  
-  const isUp = (index) => index % 2 === 0;
+  useEffect(() => {
+    if (!isRewinding) return;
+    let raf2;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setRewindAnimate(true));
+    });
+    const finish = setTimeout(() => {
+      setCurrentIndex(0);
+      setIsRewinding(false);
+      setRewindAnimate(false);
+    }, REWIND_MS + 60);
+    return () => {
+      cancelAnimationFrame(raf1);
+      if (raf2) cancelAnimationFrame(raf2);
+      clearTimeout(finish);
+    };
+  }, [isRewinding]);
 
-  const progressPercentage =
-    maxIndex === 0 ? 100 : (currentIndex / maxIndex) * 100;
+  const renderCount = Math.ceil(visibleCount) + 1;
+
+  const trackItems = [];
+  for (let i = 0; i < renderCount; i++) {
+    const absoluteIndex = (currentIndex + i) % testimonials.length;
+    trackItems.push({ ...testimonials[absoluteIndex], absoluteIndex });
+  }
+
+  const rewindItems = testimonials.map((t, absoluteIndex) => ({
+    ...t,
+    absoluteIndex,
+  }));
 
  
-  const trackWidthPercent = testimonials.length * (100 / visibleCount);
-  const itemBasisPercent = 100 / testimonials.length;
-  const translateXPercent = currentIndex * itemBasisPercent;
+  const isUp = (absoluteIndex) => absoluteIndex % 2 === 0;
+
+  const progressPercentage = ((currentIndex + 1) / (maxStartIndex + 1)) * 100;
+
+  const trackWidthPercent = renderCount * (100 / visibleCount);
+  const itemBasisPercent = 100 / renderCount;
+  const slideDistancePercent = 100 / renderCount;
+
+  const rewindTrackWidthPercent = testimonials.length * (100 / visibleCount);
+  const rewindItemBasisPercent = 100 / testimonials.length;
+
+  const rewindStartOffsetPercent = maxStartIndex * rewindItemBasisPercent;
+
+  const renderCard = (item, basisPercent) => {
+    const up = isUp(item.absoluteIndex);
+    return (
+      <div
+        key={`${item.id}-${item.absoluteIndex}`}
+        className="px-2 md:px-3 lg:px-4"
+        style={{ flex: `0 0 ${basisPercent}%` }}
+      >
+        <div
+          className={`w-full transition-transform duration-700 ease-in-out transform ${
+            up ? "md:-translate-y-6" : "md:translate-y-6"
+          }`}
+        >
+          <div className="w-full relative bg-[#FBF4EA] border border-[#707070] rounded-2xl p-6 lg:p-8 shadow-[14px_14px_0px_0px_rgba(0,0,0,0.12)] flex flex-col justify-between h-[340px] lg:h-[380px]">
+            
+            {item.absoluteIndex === 0 && (
+              <Sparkle className="absolute top-0 right-6 -translate-y-1/2 w-9 h-9 lg:w-11 lg:h-11" />
+            )}
+            {item.absoluteIndex === 2 && (
+              <Sparkle className="absolute bottom-0 right-6 translate-y-1/2 w-9 h-9 lg:w-11 lg:h-11" />
+            )}
+
+            <div>
+              <div className="flex gap-0 mb-4 lg:mb-6">
+                {[...Array(item.rating)].map((_, i) => (
+                  <svg
+                    key={i}
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="#ED1E29"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="lg:w-[22px] lg:h-[22px]"
+                  >
+                    <path d="M12 2.5l2.76 6.2 6.74.6-5.1 4.5 1.53 6.6L12 16.9l-5.93 3.5 1.53-6.6-5.1-4.5 6.74-.6L12 2.5z" />
+                  </svg>
+                ))}
+              </div>
+
+              <p
+                className="text-[#191919] text-left"
+                style={{
+                  fontFamily: "'Saans-TRIAL', sans-serif",
+                  fontWeight: 500,
+                  fontSize: "16px",
+                  lineHeight: 1.6,
+                  textAlign: "left",
+                }}
+              >
+                {item.text}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 pt-4">
+              <div
+                className="w-10 h-10 bg-black text-white flex items-center justify-center font-bold text-xs tracking-wider shrink-0"
+                style={{ clipPath: starBadgeClipPath }}
+              >
+                {item.initials}
+              </div>
+              <div>
+                <h4 className="font-bold text-[14px] text-[#191919] leading-tight">
+                  {item.author},
+                </h4>
+                <p className="text-[13px] text-[#666666]">{item.role}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section className="relative w-full bg-[#FEF9F4] text-black font-['Saans-TRIAL',sans-serif] pt-12 lg:pt-16 pb-16 lg:pb-24 overflow-hidden">
@@ -127,7 +264,7 @@ const TestimonialsSection = () => {
         <div className="hidden lg:block" />
 
         <div className="w-full lg:pl-0 lg:pr-24">
-          <div className="mb-20 lg:mb-24 lg:pl-6"> 
+          <div className="mb-20 lg:mb-24 lg:pl-5"> 
     <h2 className="font-bold text-[32px] sm:text-[40px] lg:text-[48px] leading-tight text-[#191919] mb-3">
         Voices of Our Customers
     </h2>
@@ -139,90 +276,41 @@ const TestimonialsSection = () => {
 
           
           <div className="w-full overflow-x-hidden overflow-y-visible py-16 -my-16">
-            
-            <div
-              className="flex items-start min-h-[380px] lg:min-h-[420px]"
-              style={{
-                width: `${trackWidthPercent}%`,
-                transform: `translateX(-${translateXPercent}%)`,
-                transition: `transform ${SLIDE_MS}ms ease-out`,
-              }}
-            >
-              {testimonials.map((item, index) => {
-                const up = isUp(index);
-                return (
-                  <div
-                    key={item.id}
-                    className="px-2 md:px-3 lg:px-4"
-                    style={{ flex: `0 0 ${itemBasisPercent}%` }}
-                  >
-                    <div
-                      className={`w-full transition-transform duration-700 ease-in-out transform ${
-                        up ? "md:-translate-y-6" : "md:translate-y-6"
-                      }`}
-                    >
-                      <div className="w-full relative bg-[#FBF4EA] border border-[#707070] rounded-2xl p-6 lg:p-8 shadow-[14px_14px_0px_0px_rgba(0,0,0,0.12)] flex flex-col justify-between h-[340px] lg:h-[380px]">
-                        
-                        {index === 0 && (
-                          <Sparkle className="absolute top-0 right-6 -translate-y-1/2 w-9 h-9 lg:w-11 lg:h-11" />
-                        )}
-                        {index === 2 && (
-                          <Sparkle className="absolute bottom-0 right-6 translate-y-1/2 w-9 h-9 lg:w-11 lg:h-11" />
-                        )}
-
-                        <div>
-                          <div className="flex gap-0 mb-4 lg:mb-6">
-                            {[...Array(item.rating)].map((_, i) => (
-                              <svg
-                                key={i}
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="#ED1E29"
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="lg:w-[22px] lg:h-[22px]"
-                              >
-                                <path d="M12 2.5l2.76 6.2 6.74.6-5.1 4.5 1.53 6.6L12 16.9l-5.93 3.5 1.53-6.6-5.1-4.5 6.74-.6L12 2.5z" />
-                              </svg>
-                            ))}
-                          </div>
-
-                          <p
-                            className="text-[#191919] text-left"
-                            style={{
-                              fontFamily: "'Saans-TRIAL', sans-serif",
-                              fontWeight: 500,
-                              fontSize: "16px",
-                              lineHeight: 1.6,
-                              textAlign: "left",
-                            }}
-                          >
-                            {item.text}
-                          </p>
-                        </div>
-
-                        <div className="flex items-center gap-3 pt-4">
-                          <div
-                            className="w-10 h-10 bg-black text-white flex items-center justify-center font-bold text-xs tracking-wider shrink-0"
-                            style={{ clipPath: starBadgeClipPath }}
-                          >
-                            {item.initials}
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-[14px] text-[#191919] leading-tight">
-                              {item.author},
-                            </h4>
-                            <p className="text-[13px] text-[#666666]">
-                              {item.role}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            {isRewinding ? (
+             
+              <div
+                className="flex items-start min-h-[380px] lg:min-h-[420px]"
+                style={{
+                  width: `${rewindTrackWidthPercent}%`,
+                  transform: rewindAnimate
+                    ? "translateX(0%)"
+                    : `translateX(-${rewindStartOffsetPercent}%)`,
+                  transition: rewindAnimate
+                    ? `transform ${REWIND_MS}ms ease-in-out`
+                    : "none",
+                }}
+              >
+                {rewindItems.map((item) =>
+                  renderCard(item, rewindItemBasisPercent)
+                )}
+              </div>
+            ) : (
+             
+              <div
+                className="flex items-start min-h-[380px] lg:min-h-[420px]"
+                style={{
+                  width: `${trackWidthPercent}%`,
+                  transform: isSliding
+                    ? `translateX(-${slideDistancePercent}%)`
+                    : "translateX(0%)",
+                  transition: isSliding
+                    ? `transform ${SLIDE_MS}ms ease-out`
+                    : "none",
+                }}
+              >
+                {trackItems.map((item) => renderCard(item, itemBasisPercent))}
+              </div>
+            )}
           </div>
 
           <div className="mt-8 md:mt-10 lg:mt-20 w-full">

@@ -68,7 +68,7 @@ const TrustedSection = () => {
     if (containerRef.current) resizeObserver.observe(containerRef.current);
     window.addEventListener("resize", recalculate);
     return () => {
-      resizeObserver.resizeObserver?.disconnect?.();
+      resizeObserver.disconnect();
       window.removeEventListener("resize", recalculate);
     };
   }, [recalculate]);
@@ -91,11 +91,12 @@ const TrustedSection = () => {
   return (
     <section className="relative w-full bg-[#FEF9F4] text-black font-saans pt-6 lg:pt-10 pb-6 lg:pb-10 overflow-hidden">
       <div className="w-full pb-6 lg:pb-8">
-        <div className="w-full px-4 sm:px-6 md:pl-[64px] lg:pl-[250px] md:pr-16 lg:pr-24 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+        <div className="w-full px-4 sm:px-6 md:pl-[64px] lg:pl-[250px] md:pr-16 lg:pr-24 flex flex-col md:flex-row md:items-start justify-between gap-8">
           
-          <div className="flex items-center justify-between lg:block w-full lg:w-auto">
+          <div className="flex items-center justify-between md:block w-full md:w-auto">
             <div className="flex flex-col gap-3">
-              <h2 className="font-bold text-[24px] sm:text-[28px] lg:text-[36px] leading-tight text-[#191919]">
+              {/* Sirf us specific narrow range mein heading size adjust hoga */}
+              <h2 className="font-bold text-[24px] sm:text-[28px] min-[900px]:max-[1150px]:text-[24px] xl:text-[36px] leading-tight text-[#191919]">
                 Tried, Tested & Trusted
               </h2>
               <div className="flex items-center gap-6 text-[14px]">
@@ -108,7 +109,7 @@ const TrustedSection = () => {
               </div>
             </div>
 
-            <div className="flex lg:hidden items-center gap-2 shrink-0">
+            <div className="flex md:hidden items-center gap-2 shrink-0">
               <button
                 onClick={handlePrev}
                 disabled={currentIndex === 0}
@@ -128,7 +129,8 @@ const TrustedSection = () => {
             </div>
           </div>
 
-          <div className="hidden lg:flex flex-col gap-4 max-w-[420px]">
+          {/* Sirf tab jab width 900px aur 1150px ke darmiyan (qareeb aane par) ho, tab max-width kam ho kar 5 lines mein aye gi */}
+          <div className="hidden md:flex flex-col gap-4 min-[900px]:max-[1150px]:max-w-[200px] xl:max-w-[420px]">
             <p className="text-[14px] text-[#666666] leading-relaxed">
               Explore the designs that businesses keep coming back for. These products lead the way in quality, demand, and customer satisfaction a true reflection of what works best in the market.
             </p>
