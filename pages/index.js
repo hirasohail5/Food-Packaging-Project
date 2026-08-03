@@ -22,12 +22,12 @@ export default function Home() {
       <OurProcess />
       <TrustedSection />
       <TestimonialsSection />
-      
+      <FAQSection />
       
       
       {/* 
       <Footer />
-      <FAQSection />
+      
       <TestSection /> */}
     </main>
   );
