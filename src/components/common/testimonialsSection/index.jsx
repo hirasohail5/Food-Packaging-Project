@@ -53,21 +53,19 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [slideDirection, setSlideDirection] = useState("enter"); // 'enter', 'leaving'
 
-  // Slower auto-slide interval (e.g., every 5.5 seconds) with slide-out effect
   useEffect(() => {
     const timer = setInterval(() => {
-      setIsAnimating(true);
+      setSlideDirection("leaving");
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-        setIsAnimating(false);
-      }, 500); // matches transition timing
+        setSlideDirection("enter");
+      }, 600); 
     }, 5500);
     return () => clearInterval(timer);
   }, []);
 
-  // Get exactly 3 visible testimonials in sequence (looping around if needed)
   const getVisibleTestimonials = () => {
     const visible = [];
     for (let i = 0; i < 3; i++) {
@@ -79,78 +77,87 @@ const TestimonialsSection = () => {
 
   const visibleCards = getVisibleTestimonials();
 
-  // Progress bar calculation based on current slide step (1 to 6)
   const progressPercentage = ((currentIndex + 1) / testimonials.length) * 100;
+
+  const starBadgeClipPath =
+    "polygon(50% 0%, 57.4% 12.7%, 69.1% 3.8%, 71.1% 18.4%, 85.4% 14.6%, 81.6% 28.9%, 96.2% 30.9%, 87.3% 42.6%, 100% 50%, 87.3% 57.4%, 96.2% 69.1%, 81.6% 71.1%, 85.4% 85.4%, 71.1% 81.6%, 69.1% 96.2%, 57.4% 87.3%, 50% 100%, 42.6% 87.3%, 30.9% 96.2%, 28.9% 81.6%, 14.6% 85.4%, 18.4% 71.1%, 3.8% 69.1%, 12.7% 57.4%, 0% 50%, 12.7% 42.6%, 3.8% 30.9%, 18.4% 28.9%, 14.6% 14.6%, 28.9% 18.4%, 30.9% 3.8%, 42.6% 12.7%)";
 
   return (
     <section className="relative w-full bg-[#FEF9F4] text-black font-['Saans-TRIAL',sans-serif] pt-12 lg:pt-16 pb-16 lg:pb-24 overflow-hidden">
-      {/* Vertical grid line fully aligned with previous sections */}
-      <div
-        className="hidden lg:block absolute top-0 bottom-0 z-25 pointer-events-none border-r border-[#707070]"
-        style={{ left: "230px" }}
-      />
+      
+      <div className="w-full px-4 lg:px-0 lg:grid lg:grid-cols-[230px_1fr]">
+        <div className="hidden lg:block" />
 
-      {/* Header aligned with the grid system */}
-      <div className="w-full px-4 lg:pl-[230px] mb-12 lg:mb-16">
-        <div className="max-w-7xl">
-          <h2 className="font-bold text-[32px] sm:text-[40px] lg:text-[48px] leading-tight text-[#191919] mb-3">
-            Voices of Our Customers
-          </h2>
-          <p className="text-[14px] sm:text-[16px] text-[#666666] max-w-xl font-['Saans-TRIAL',sans-serif]">
-            Real stories from the cafés, bakeries, and brands that trust us with their packaging.
-          </p>
-        </div>
-      </div>
+        <div className="w-full lg:pl-12 lg:pr-12">
+          <div className="mb-20 lg:mb-24">
+            <h2 className="font-bold text-[32px] sm:text-[40px] lg:text-[48px] leading-tight text-[#191919] mb-3">
+              Voices of Our Customers
+            </h2>
+            <p className="text-[18px] text-black max-w-xl font-['Saans-TRIAL',sans-serif] font-medium text-left">
+              Real stories from the cafés, bakeries, and brands that trust us<br /> with their packaging.
+            </p>
+          </div>
 
-      {/* Testimonials Container aligned from the left line to the right edge */}
-      <div className="w-full px-4 lg:pl-[230px] lg:pr-12">
-        <div className="max-w-7xl">
-          {/* Cards Grid: Staggered vertical heights matching the reference layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start relative min-h-[420px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start relative min-h-[420px]">
             {visibleCards.map((item, idx) => {
-              // Stagger pattern: Card 0 and 2 are lower/standard, Card 1 is shifted higher
-              const isMiddleCard = idx === 1;
+              const isCardUp = idx === 0 || idx === 2;
 
               return (
                 <div
                   key={`${item.id}-${currentIndex}`}
-                  className={`transition-all duration-700 ease-in-out transform ${
-                    isMiddleCard ? "md:-translate-y-8" : "md:translate-y-6"
+                  className={`w-full transition-all duration-700 ease-in-out transform ${
+                    isCardUp ? "md:-translate-y-6" : "md:translate-y-6"
                   } ${
-                    isAnimating
-                      ? "-translate-x-10 opacity-0"
+                    slideDirection === "leaving"
+                      ? "-translate-x-16 opacity-0"
                       : "translate-x-0 opacity-100"
                   }`}
                   style={{ transitionDuration: "700ms" }}
                 >
-                  <div className="relative bg-[#FBF4EA] border border-[#707070] rounded-2xl p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.1)] flex flex-col justify-between h-[380px]">
-                    
-                    {/* Top-right decorative star/cross anchor */}
+                  <div className="w-full relative bg-[#FBF4EA] border border-[#707070] rounded-2xl p-8 shadow-[14px_14px_0px_0px_rgba(0,0,0,0.12)] flex flex-col justify-between h-[380px]">
+
                     {idx === 0 && (
-                      <span className="absolute -top-3 right-6 text-black text-xl select-none pointer-events-none">✦</span>
+                      <span className="absolute -top-4 right-6 text-black text-5xl select-none pointer-events-none">✦</span>
                     )}
                     {idx === 2 && (
-                      <span className="absolute -bottom-3 right-6 text-black text-xl select-none pointer-events-none">✦</span>
+                      <span className="absolute -bottom-4 right-6 text-black text-5xl select-none pointer-events-none">✦</span>
                     )}
 
-                    {/* Card Content */}
                     <div>
-                      {/* Rating Stars */}
-                      <div className="flex gap-1 mb-6 text-[#ED1E29]">
+                      <div className="flex gap-0.5 mb-6">
                         {[...Array(item.rating)].map((_, i) => (
-                          <span key={i} className="text-lg">★</span>
+                          <svg
+                            key={i}
+                            width="22"
+                            height="22"
+                            viewBox="0 0 24 24"
+                            fill="#ED1E29"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M12 2.5l2.76 6.2 6.74.6-5.1 4.5 1.53 6.6L12 16.9l-5.93 3.5 1.53-6.6-5.1-4.5 6.74-.6L12 2.5z" />
+                          </svg>
                         ))}
                       </div>
 
-                      {/* Review Text */}
-                      <p className="text-[15px] sm:text-[16px] leading-relaxed text-[#191919] font-['Saans-TRIAL',sans-serif]">
+                      <p
+                        className="text-[#191919] text-left"
+                        style={{
+                          fontFamily: "'Saans-TRIAL', sans-serif",
+                          fontWeight: 500,
+                          fontSize: "18px",
+                          lineHeight: 1.6,
+                          textAlign: "left",
+                        }}
+                      >
                         {item.text}
                       </p>
                     </div>
 
-                    {/* Author Details */}
-                    <div className="flex items-center gap-3 pt-6 border-t border-[#EFE9E1]">
-                      <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-xs tracking-wider shrink-0 shadow-sm">
+                    <div className="flex items-center gap-3 pt-4">
+                      <div
+                        className="w-10 h-10 bg-black text-white flex items-center justify-center font-bold text-xs tracking-wider shrink-0"
+                        style={{ clipPath: starBadgeClipPath }}
+                      >
                         {item.initials}
                       </div>
                       <div>
@@ -166,8 +173,7 @@ const TestimonialsSection = () => {
             })}
           </div>
 
-          {/* Bottom Progress Bar aligning from left boundary to right edge */}
-          <div className="mt-16 w-full pr-4 lg:pr-12">
+          <div className="mt-20 w-full">
             <div className="w-full h-[2px] bg-[#E5E0DA] relative overflow-hidden">
               <div
                 className="absolute top-0 left-0 bottom-0 bg-[#ED1E29] transition-all duration-700 ease-out"

@@ -23,6 +23,11 @@ const baseCategories = [
     title: "Stickers/Labels",
     image: "/images/home/products/pastryBoxes.webp",
   },
+  {
+    id: "custom-boxes",
+    title: "Custom Boxes",
+    image: "/images/home/products/burgeBoxes.png",
+  },
 ];
 
 // 8px Gap
@@ -102,6 +107,9 @@ const ProductCategoriesSection = () => {
     ? line - trackIndex * (cardWidth + GAP) - (GAP / 2 + 6)
     : line - trackIndex * (cardWidth + GAP);
 
+  
+  const progressPercentage = maxIndex === 0 ? 100 : ((currentIndex + 1) / (maxIndex + 1)) * 100;
+
   return (
     <section className="relative w-full bg-[#FEF9F4] text-black font-saans pt-10 lg:pt-10 pb-10 lg:pb-20 overflow-hidden">
       <div className="w-full px-6 md:px-[80px] lg:pl-[245px] lg:pr-12">
@@ -114,7 +122,6 @@ const ProductCategoriesSection = () => {
           </div>
 
           <div className="flex flex-col lg:items-end gap-4 lg:gap-3">
-            {/* Mobile friendly responsive line break */}
             <p className="max-w-[300px] sm:max-w-[343px] lg:max-w-[420px] font-normal text-[14px] leading-[18px] lg:text-[18px] lg:leading-[24px] text-left text-[#191919]">
               From boxes to bags, cups to wraps{" "}
               <br className="hidden lg:inline" />
@@ -219,16 +226,12 @@ const ProductCategoriesSection = () => {
         </div>
       </div>
 
-      {/* Progress Bar */}
       <div className="hidden md:block w-full md:px-[80px] lg:pl-[245px] lg:pr-12 mt-12">
         <div className="w-full h-[2px] bg-[#E0E0E0] relative">
           <div
-            className="h-full bg-[#ED1E29] transition-all duration-300"
+            className="h-full bg-[#ED1E29] transition-all duration-300 ease-out"
             style={{
-              width: `${(visibleCount / total) * 100}%`,
-              transform: `translateX(${
-                maxIndex === 0 ? 0 : (currentIndex / maxIndex) * (100 / visibleCount) * (total - visibleCount)
-              }%)`,
+              width: `${progressPercentage}%`,
             }}
           />
         </div>

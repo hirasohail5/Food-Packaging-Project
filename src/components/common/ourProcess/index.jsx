@@ -53,7 +53,7 @@ const logos = [
   { name: "Faded", src: "/images/home/logos/logo3.webp" },
   { name: "Not Ya Son's Weed", src: "/images/home/logos/logo4.webp" },
   { name: "Ignite", src: "/images/home/logos/logo5.webp" },
-  { name: "Modus", src: "/images/home/logos/logo6.webp" },
+  { name: "Modus", src: "/images/home/logos/logo2.webp" },
   { name: "Stoned", src: "/images/home/logos/logo7.webp" },
   { name: "Native Extracts", src: "/images/home/logos/logo8.webp" },
 ];
@@ -75,7 +75,7 @@ const ProcessSection = () => {
                 <span className="xl:whitespace-nowrap">
                   From concept to delivery,
                   <sup className="hidden xl:inline-flex xl:ml-2 items-center justify-center w-[24px] h-[24px] text-[13px] align-top font-normal border border-black rounded-full -translate-y-1">
-                    ®
+                    R
                   </sup>
                 </span>
                 <br className="inline lg:hidden" />
@@ -163,9 +163,10 @@ const ProcessSection = () => {
             className="w-full bg-[#FEF9F4] px-6 sm:px-8 md:pl-[64px] lg:pl-[210px] lg:pr-16 py-10 lg:py-10 border-l border-r border-b rounded-b-[24px] lg:rounded-b-[36px] flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-0 relative overflow-hidden"
             style={{ borderColor: "#D1D5DB", borderTopColor: "#FBF4EA" }}
           >
-            <div className="shrink-0 w-full lg:w-[180px] lg:pr-4 z-10 text-center lg:text-left">
-              <p className="text-[14px] sm:text-[14px] font-bold text-black leading-tight font-['SF_Pro_Display','SF_Pro',sans-serif]">
-                Collabs We're Proud to Carry
+            {/* Clamp function use kiya hai taake zoom karne par space automatically kam ho jaye */}
+            <div className="shrink-0 w-full lg:w-[150px] lg:mr-[clamp(80px,15vw,350px)] z-10 text-center lg:text-left">
+              <p className="text-[18px] sm:text-[18px] font-bold text-black leading-tight font-['SF_Pro_Display','SF_Pro',sans-serif]">
+                Collabs We're<span className="hidden lg:inline"><br /></span><span className="inline lg:hidden"> </span>Proud to Carry
               </p>
             </div>
 

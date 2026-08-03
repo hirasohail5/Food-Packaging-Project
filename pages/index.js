@@ -19,8 +19,10 @@ export default function Home() {
       <Prdoductcategory />
       <MustHavesSection />
       <OurProcess />
-      {/* <TrustedSection /> 
       <TestimonialsSection />
+      
+      {/* <TrustedSection />
+      
       <FAQSection />
       <TestSection /> */}
     </main>
